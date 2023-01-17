@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Income Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var baseSalary = document.getElementById("baseSalary").value;
+            var grossIncrement = (baseSalary * 0.3).toFixed(2);
+            var ssnit = (grossIncrement * 0.055).toFixed(2);
+            var incrementAfterSSNIT = (grossIncrement - ssnit).toFixed(2);
+            var tax = (incrementAfterSSNIT * 0.2).toFixed(2);
+            var netIncrement = (incrementAfterSSNIT - tax).toFixed(2);
+            var newSalary = (parseFloat(baseSalary) + parseFloat(netIncrement)).toFixed(2);
+            var result = "Gross Increment: GHS " + grossIncrement + "<br>" +
+                "Increment After SSNIT: GHS " + incrementAfterSSNIT + "<br>" +
+                "Net Increment (after Tax): GHS " + netIncrement + "<br>" +
+                "New Single Spine Salary: GHS " + newSalary;
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Salary Increment Calculator</h1>
+    <form>
+        <label>Current Base Salary:</label>
+        <input type="text" id="baseSalary" placeholder="Enter current salary">
+        <br>
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    <br>
+    <div id="result"></div>
+</body>
+
+</html>
